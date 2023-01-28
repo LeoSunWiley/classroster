@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Course Manager</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+                    <h1><a href="/" class="text-dark">Course Manager</a></h1>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-3">
+                    <a href="teachers" class="btn btn-outline-primary btn-lg">Teachers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="students" class="btn btn-outline-primary btn-lg">Students</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="courses" class="btn btn-outline-primary btn-lg">Courses</a>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Edit Student</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="editStudent" method="POST">
+                        <div class="form-group row">
+                            <label for="firstName" class="col-3 col-form-label">
+                                First Name</label>
+                            <div class="col-9">
+                                <input type="text" name="firstName" id="firstName" 
+                                       class="form-control" th:value="${student.firstName}"/>
+                                <div th:if="${#fields.hasErrors('student.firstName')}">
+                                    <p th:each="error: ${#fields.errors('student.firstName')}" class="alert alert-danger"
+                                    th:text="${error}">Bad first name</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-3 col-form-label">
+                                Last Name</label>
+                            <div class="col-9">
+                                <input type="text" name="lastName" id="lastName" 
+                                       class="form-control"  th:value="${student.lastName}"/>
+                                    <div th:if="${#fields.hasErrors('student.lastName')}">
+                                        <p th:each="error: ${#fields.errors('student.lastName')}" class="alert alert-danger"
+                                        th:text="${error}">Bad last name</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" th:value="${student.id}"/>
+                        <button type="submit" class="btn btn-primary">Update Student</button>
+                    </form>
+                </div>
+            </div>
+        </div>    
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script th:src="@{/js/employee.js}"></script>
+    </body>
+</html>
